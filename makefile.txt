@@ -1,0 +1,31 @@
+MPI_COMPILE_FLAGS = $(shell mpicc --showme:compile)
+MPI_LINK_FLAGS = $(shell mpicc --showme:link)
+ 
+my_app: my_app.c
+        $(CC) $(MPI_COMPILE_FLAGS) my_app.c $(MPI_LINK_FLAGS) -o my_app
+
+CC = g++ 
+all : boruvka prim kruskal prim_parallel kruskal_parallel
+
+boruvka: boruvka.cpp
+	$(CC) -o boruvka boruvka.cpp
+	
+prim: prim.cpp
+	$(CC) -o prim prim.cpp
+	
+kruskal: kruskal.cpp
+	$(CC) -o kruskal kruskal.cpp
+
+prim_parallel: prim_parallel.c
+	$(CC) $(MPI_COMPILE_FLAGS) prim_parallel.c $(MPI_LINK_FLAGS) -o prim_parallel	
+
+kruskal_parallel: kruskal_parallel.c
+	$(CC) $(MPI_COMPILE_FLAGS) kruskal_parallel.c $(MPI_LINK_FLAGS) -o kruskal_parallel
+
+
+clean:
+	rm -f prim *~
+	rm -f boruvka *~
+	rm -f kruskal *~
+	rm -f kruskal_parallel *~
+	rm -f prim_parallel *~
