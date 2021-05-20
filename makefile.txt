@@ -23,7 +23,7 @@ kruskal_parallel: kruskal_parallel.c
 	$(CC) $(MPI_COMPILE_FLAGS) kruskal_parallel.c $(MPI_LINK_FLAGS) -o kruskal_parallel
 	
 mst_Kclusters: mst_Kclusters.cpp
-	$(CC) $(MPI_COMPILE_FLAGS) -o mst_Kclusters mst_Kclusters.cpp
+	$(CC) -o mst_Kclusters mst_Kclusters.cpp
 
 
 clean:
